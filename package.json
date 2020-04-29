@@ -1,0 +1,19 @@
+{
+  "name": "html-docxjs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "node main"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arthur9010/html-docxjs.git"
+  },
+  "author": "Arthur Alves && Vincenzo Grisorio",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/arthur9010/html-docxjs/issues"
+  },
+  "homepage": "https://github.com/arthur9010/html-docxjs#readme"
+}
