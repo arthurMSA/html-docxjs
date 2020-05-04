@@ -10,6 +10,7 @@ fs.readFile('./test.html', async (err, data) => {
 	let doc = []
 	const body = await getBody(data.toString())
 	const tags = await getTags(body)
+	console.log(tags)
 	tags.forEach(tag => {
 		switch (tag['name']) {
 			case 'p':
