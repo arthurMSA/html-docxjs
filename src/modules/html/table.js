@@ -1,18 +1,36 @@
-const { Paragraph, Table, TableCell, TableRow, WidthType } = require('docx')
+const { Paragraph, Table, TableCell, TableRow, WidthType, TextRun } = require('docx')
 module.exports = (tags) => {
 	let rows = []
 	let cells = []
+	let isHead = false
 	let table
 	let openRow = false
 	tags.forEach(tag => {
 		if(tag['name'] === '/tr') {
 			openRow = false
-			rows.push(new TableRow({children: cells}))
+			rows.push(new TableRow({
+				children: cells, tableHeader: isHead
+			}))
 			cells = []
+			isHead = false
 		}
 		if(openRow) {
+			let bold = false
+			if(tag['name'] === 'th') {
+				isHead = true
+				bold = true
+			}
 			cells.push(new TableCell({
-				children: [new Paragraph(tag['content'])]
+				children: [
+					new Paragraph({
+						children: [
+							new TextRun({
+								text: tag['content'],
+								bold
+							})
+						]
+					})
+				]
 			}))
 		}
 		if(tag['name'] === 'tr') {
