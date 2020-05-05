@@ -1,16 +1,17 @@
 const fs = require('fs')
 const p = require('./modules/html/p')
 const h = require('./modules/html/h')
+const table = require('./modules/html/table')
 const { Document, Packer } = require('docx')
 const getBody = require('./modules/getBody')
 const getTags = require('./modules/getTags')
 
-
 fs.readFile('./test.html', async (err, data) => {
+
 	let doc = []
 	const body = await getBody(data.toString())
 	const tags = await getTags(body)
-	console.log(tags)
+	let tagTable = []
 	tags.forEach(tag => {
 		switch (tag['name']) {
 			case 'p':
@@ -24,6 +25,18 @@ fs.readFile('./test.html', async (err, data) => {
 				break
 			case 'h3':
 				doc.push(h(tag['content'], 3))
+				break
+			case 'tr':
+			case 'table':
+			case 'th':
+			case 'td':
+			case '/tr':
+				tagTable.push(tag)
+				break
+			case '/table':
+				tagTable.push(tag)
+				doc.push(table(tagTable))
+				tagTable = []
 				break
 		}
 	})
