@@ -1,7 +1,7 @@
 const { Paragraph } = require('docx')
 module.exports = (tags) => {
     let list = []
-    let level = 0
+    let level = -1
     tags.forEach(tag => {
         switch (tag['name']) {
             case 'ul':
