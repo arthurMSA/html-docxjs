@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/arthur9010/html-docxjs#readme",
   "dependencies": {
-    "docx": "^5.0.2",
+    "docx": "^9.1.0",
     "fs": "0.0.1-security"
   }
 }
